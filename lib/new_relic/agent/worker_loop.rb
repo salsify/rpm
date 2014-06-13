@@ -90,6 +90,8 @@ module NewRelic
             raise
           rescue => e
             # Don't blow out the stack for anything that hasn't already propagated
+	    ::NewRelic::Agent.logger.error "SALSIFY NEWRELIC DEBUG: #{e.message}"
+	    ::NewRelic::Agent.logger.error e.backtrace.join("\n")
             ::NewRelic::Agent.logger.error "Error running task in Agent Worker Loop:", e
           end
         end
